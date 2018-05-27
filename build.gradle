@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        ext.kotlin_version = '1.2.41'
+        ext.felix_pluguin = '0.24'
+
+        dependencies {
+            classpath "gradle.plugin.org.felix.osgi:buildSrc:$felix_pluguin"
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        }
+    }
+}
+
+plugins {
+    id 'org.felix.osgi' version '0.24'
+    id "org.jetbrains.kotlin.jvm" version '1.2.41'
+}
+allprojects {
+    repositories {
+        mavenCentral()
+        maven { url = 'http://dist.wso2.org/maven2/' }
+
+    }
+}
+apply plugin: 'java'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'osgi'
+
+}
+
+dependencies{
+    compile project(":modules:com.test.bundle.test.normal")
+    compile project(":modules:com.test.bundle.test.ds")
+    compile project(":modules:com.test.bundle.kotl.wab")
+    compile project(":modules:com.test.bundle.jv.wab")
+
+
+    compileOnly group: 'org.eclipse.platform', name: 'org.eclipse.osgi', version: '3.12.50'
+
+    compile (group: 'org.eclipse.gemini' ,name: 	'org.eclipse.gemini.web.core', version: '3.0.3.RELEASE') {
+        exclude group:'org.eclipse.virgo.mirrored', module:'org.eclipse.osgi'
+    }
+    compile (group: 'org.eclipse.gemini' ,name: 	'org.eclipse.gemini.web.extender', version: '3.0.3.RELEASE') {
+        exclude group:'org.eclipse.virgo.mirrored', module:'org.eclipse.osgi'
+    }
+    compile (group: 'org.eclipse.gemini' ,name: 	'org.eclipse.gemini.web.tomcat', version: '3.0.3.RELEASE') {
+        exclude group:'org.eclipse.virgo.mirrored', module:'org.eclipse.osgi'
+    }
+    compile (group: 'org.eclipse.gemini' ,name: 	'org.eclipse.gemini.web.jaspic.fragment', version: '3.0.3.RELEASE') {
+        exclude group:'org.eclipse.virgo.mirrored', module:'org.eclipse.osgi'
+    }
+}
+

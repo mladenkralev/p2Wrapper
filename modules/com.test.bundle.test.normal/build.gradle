@@ -1,0 +1,28 @@
+group = "modules"
+
+sourceCompatibility = 1.8
+
+jar {
+    manifest {
+        instruction 'Bundle-Activator', 'com.demo.activator.DemoClass'
+        instruction 'Export-Package', 'com.demo.activator.*'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compileOnly group: 'org.eclipse.platform', name: 'org.eclipse.osgi', version: '3.12.50'
+    compileOnly group: 'org.osgi', name: 'org.osgi.core', version: '4.3.0'
+    compileOnly group: 'org.eclipse.equinox', name: 'org.eclipse.equinox.p2.publisher', version: '1.3.0.v20140129-1405'
+    compileOnly group: 'org.eclipse.platform', name: 'org.eclipse.equinox.p2.publisher.eclipse', version: '1.2.201'
+    compileOnly group: 'org.eclipse.platform', name: 'org.eclipse.equinox.app', version: '1.3.400'
+    compileOnly group: 'org.eclipse.platform', name: 'org.eclipse.equinox.p2.core', version: '2.4.100'
+    compileOnly group: 'org.eclipse.platform', name: 'org.eclipse.equinox.p2.metadata.repository', version: '1.2.300'
+    compileOnly group: 'org.eclipse.equinox', name: 'org.eclipse.equinox.p2.metadata.repository', version: '1.2.100.v20130327-2119'
+    compileOnly group: 'org.eclipse.platform', name: 'org.eclipse.equinox.p2.artifact.repository', version: '1.1.600'
+    compileOnly group: 'org.eclipse.platform', name: 'org.eclipse.equinox.p2.repository', version: '2.3.300'
+}
+
+
+
